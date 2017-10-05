@@ -10,6 +10,8 @@ import {UserListService} from './users/user-list.service';
 import {Routing} from './app.routes';
 import {FormsModule} from '@angular/forms';
 import {APP_BASE_HREF} from "@angular/common";
+import {CardListService} from "./Card/card-list.service";
+import {CardComponent} from "./Card/card.component";
 
 
 @NgModule({
@@ -25,10 +27,12 @@ import {APP_BASE_HREF} from "@angular/common";
         HomeComponent,
         NavbarComponent,
         UserListComponent,
-        UserComponent
+        UserComponent,
+        CardComponent
     ],
     providers: [
         UserListService,
+        CardListService,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
     bootstrap: [AppComponent]
