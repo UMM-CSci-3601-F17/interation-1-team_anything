@@ -1,0 +1,39 @@
+
+Add a new Card:
+<span class="row">
+    <span id="addCard" class="col-lg">
+        <span class="input-group">
+            <input class="form-control" #input type="text" placeholder="Word" [(ngModel)]="newCardWord">
+            <input class="form-control" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym">
+            <input class="form-control" #input type="text" placeholder="Antonym" [(ngModel)]="newCardAntonym">
+            <input class="form-control" #input type="text" placeholder="General Description" [(ngModel)]="newCardGeneralization">
+            <input class="form-control" #input type="text" placeholder="Example" [(ngModel)]="newCardExample">
+
+            <button class="form-control" #input type="button" (click)="this.addNewCard(newCardWord, newCardSynonym, newCardAntonym, newCardGeneralization, newCardExample)">Add Card</button>
+        </span>
+    </span>
+</span>
+
+<!-- The names userName and userAge, different from searchName and searchAge, are being
+used here only to illustrate that these inputs are not necessarily explicitly referencable from within
+the typescript. Unless made to do so by defining a userName variable within this component's typescript file-->
+<span id="title" class="list-group-item list-group-item-info">
+    <span id="list-title"> Cards </span>
+    <input id="cardWord" #input type="text" placeholder="Filter by word" (input)="cardWord = $event.target.value">
+    <input id="cardSynonm" #input type="text" placeholder="Filter by synonym" (input)="wordSynonym = $event.target.value">
+</span>
+
+<ul class="list-group" *ngIf="cards; else cardsError">
+    <li id="cards" *ngFor="let card of this.filterCards(cardWord, cardSynonym)" class="list-group-item">
+        {{ card.word }} has the synonym {{ card.synonym }}
+    </li>
+</ul>
+<!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+<ng-template #cardsError>
+    <p>
+        There was a problem loading the cards. Possibly the server is down or perhaps there are network issues.
+    </p>
+    <p>
+        Please wait a bit and try again or start the server.
+    </p>
+</ng-template>

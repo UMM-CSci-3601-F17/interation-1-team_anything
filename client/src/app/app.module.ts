@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {APP_BASE_HREF} from "@angular/common";
 import {CardListService} from "./Card/card-list.service";
 import {CardComponent} from "./Card/card.component";
+import {CardListComponent} from "./Card/card-list.component";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {CardComponent} from "./Card/card.component";
         NavbarComponent,
         UserListComponent,
         UserComponent,
-        CardComponent
+        CardComponent,
+        CardListComponent
     ],
     providers: [
         UserListService,
