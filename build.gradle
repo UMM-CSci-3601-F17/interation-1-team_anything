@@ -10,7 +10,7 @@ task clearMongoDB(type: Exec) {
 
 task seedCardData(type: Exec) {
     executable = "mongoimport"
-    args = ["-d", "dev", "-c", "cards", "--file", "cards.seed.json", "--jsonArray"]
+    args = ["-d", "sage", "-c", "cards", "--file", "cards.seed.json", "--jsonArray"]
 }
 
 task seedMongoDB {
