@@ -13,6 +13,9 @@ import {APP_BASE_HREF} from "@angular/common";
 import {CardListService} from "./Card/card-list.service";
 import {CardComponent} from "./Card/card.component";
 import {CardListComponent} from "./Card/card-list.component";
+import {PlayListService} from "./play/play-list.service";
+import {PlayComponent} from "./play/play.component";
+import {PlayListComponent} from "./play/play-list.component";
 
 
 @NgModule({
@@ -30,11 +33,14 @@ import {CardListComponent} from "./Card/card-list.component";
         UserListComponent,
         UserComponent,
         CardComponent,
-        CardListComponent
+        CardListComponent,
+        PlayComponent,
+        PlayListComponent
     ],
     providers: [
         UserListService,
         CardListService,
+        PlayListService,
         {provide: APP_BASE_HREF, useValue: '/'}
     ],
     bootstrap: [AppComponent]

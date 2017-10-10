@@ -1,7 +1,7 @@
 
 Add a new Card:
 <span class="row">
-    <span id="addCard" class="col-lg">
+    <span id="addCard" class="col-lg-5">
         <span class="input-group">
             <input class="form-control" #input type="text" placeholder="Word" [(ngModel)]="newCardWord">
             <input class="form-control" #input type="text" placeholder="Synonym" [(ngModel)]="newCardSynonym">
@@ -20,7 +20,7 @@ the typescript. Unless made to do so by defining a userName variable within this
 <span id="title" class="list-group-item list-group-item-info">
     <span id="list-title"> Cards </span>
     <input id="cardWord" #input type="text" placeholder="Filter by word" (input)="cardWord = $event.target.value">
-    <input id="cardSynonm" #input type="text" placeholder="Filter by synonym" (input)="wordSynonym = $event.target.value">
+    <input id="cardSynonym" #input type="text" placeholder="Filter by synonym" (input)="wordSynonym = $event.target.value">
 </span>
 
 <ul class="list-group" *ngIf="cards; else cardsError">
