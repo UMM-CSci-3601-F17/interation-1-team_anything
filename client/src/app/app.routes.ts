@@ -9,6 +9,7 @@ import {PlayListComponent} from "./play/play-list.component";
 // Route Configuration
 export const routes: Routes = [
     {path: '', component: HomeComponent},
+    {path: 'users', component:UserListComponent},
     {path: 'teachers', component: CardListComponent},
     {path: 'play', component:PlayListComponent}
 ];

@@ -10,9 +10,26 @@
 
 <ul class="list-group" *ngIf="cards; else cardsError">
     <li id="cards" *ngFor="let card of this.filterCards(cardWord, cardWord)" class="list-group-item">
-        {{ card.word }} is {{ card.synonym }} years old
+        {{ card.word }} has synonym {{ card.synonym }}
     </li>
 </ul>
+
+    <div class="boxed">
+        This text is enclosed in a box.
+    </div>
+
+    <span class="row">
+        <span id="getHint" class="col-lg-6">
+            <button class="form-control" button style="background-color: lightblue" #input type="button" (click)="this.getHint()">Hint</button>
+        </span>
+        <span id="getNextCard" class="col-lg-6">
+                <button class="form-control" button style="background-color: lightblue" #input type="button" (click)="this.getNextCard()">Next</button>
+
+    </span>
+    </span>
+
+
+
 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
 <ng-template #cardsError>
     <p>

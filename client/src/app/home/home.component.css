@@ -1,13 +1,14 @@
-/*body{
-    background-image: url("../oughaval-wood-s.jpg");
-}
-*/
+
 .container{
     font-family: 'Share', cursive;
-    text-align: center;
     font-size: 2em;
+    color: white;
+    text-align: center;
 }
 
 h1{
     font-size: 3cm;
 }
+
+
+

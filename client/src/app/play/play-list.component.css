@@ -1,14 +1,25 @@
-#addCard {
-    flex-basis: 100%;
-    max-width: 100%;
-}
+
 
 #title input {
     width:16%;
     min-width: 100px;
+
 }
 
 #list-title {
     padding-right: 14px;
+    background-color: white;
 }
+
+.boxed {
+    border: 2px solid darkslateblue;
+    min-height: 400px;
+    text-align: center;
+    padding: 150px;
+    background-color: white;
+}
+
+
+
+
 

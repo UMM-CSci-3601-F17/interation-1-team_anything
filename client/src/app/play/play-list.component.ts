@@ -14,6 +14,8 @@ export class PlayListComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public cards: Card[];
     public filteredCards: Card[];
+    public playedCards: Card[];
+    public playedHints: String[];
 
     public cardWord : string;
     public cardSynonym : string;
@@ -25,6 +27,11 @@ export class PlayListComponent implements OnInit {
     //We can call upon the service for interacting
     //with the server.
     constructor(public playListService: PlayListService) {
+
+    }
+
+
+    public getHint() {
 
     }
 
