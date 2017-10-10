@@ -8,6 +8,9 @@ import spark.Route;
 import spark.utils.IOUtils;
 import umm3601.user.UserController;
 
+import umm3601.sage.card.CardController;
+import umm3601.sage.deck.DeckController;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,15 +18,17 @@ import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
-    private static final String userDatabaseName = "dev";
+    private static final String databaseName = "sage";
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
+        UserController userController = new UserController(database);
 
-        UserController userController = new UserController(userDatabase);
+        CardController cardController = new CardController(database);
+        DeckController deckController = new DeckController(database);
 
         //Configure Spark
         port(serverPort);
@@ -56,13 +61,13 @@ public class Server {
         // Redirects for the "home" page
         redirect.get("", "/");
 
-        Route clientRoute = (req, res) -> {
+ //       Route clientRoute = (req, res) -> {
             //Return client files
-            InputStream stream = Server.class.getResourceAsStream("/public/index.html");
-            return IOUtils.toString(stream);
-        };
+//            InputStream stream = Server.class.getResourceAsStream("/public/index.html");
+ //           return IOUtils.toString(stream);
+ //       };
 
-        get("/", clientRoute);
+//        get("/", clientRoute);
 
         /// User Endpoints ///////////////////////////
         /////////////////////////////////////////////
@@ -73,11 +78,16 @@ public class Server {
         get("api/users/:id", userController::getUser);
         post("api/users/new", userController::addNewUser);
 
+
+        get("api/decks", deckController::getDecks);
+        get("api/cards/:id", cardController::getCard);
+        get("api/decks/:id", deckController::getDeck);
+
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
-        get("api/error", (req, res) -> {
-            throw new RuntimeException("A demonstration error");
-        });
+        // get("api/error", (req, res) -> {
+        //     throw new RuntimeException("A demonstration error");
+        // });
 
         // Called after each request to insert the GZIP header into the response.
         // This causes the response to be compressed _if_ the client specified
@@ -86,7 +96,7 @@ public class Server {
         // before they they're processed by things like `get`.
         after("*", Server::addGzipHeader);
 
-        get("/*", clientRoute);
+//        get("/*", clientRoute);
 
         // Handle "404" file not found requests:
         notFound((req, res) -> {
