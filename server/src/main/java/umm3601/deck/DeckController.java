@@ -1,4 +1,4 @@
-package umm3601.sage.deck;
+package umm3601.deck;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
@@ -21,7 +21,7 @@ public class DeckController {
     private final MongoCollection<Document> deckCollection;
 
 
-    public DeckController(MongoDatabase database){
+    public DeckController(MongoDatabase database) {
         gson = new Gson();
         this.database = database;
         deckCollection = database.getCollection("decks");
@@ -49,7 +49,7 @@ public class DeckController {
         return null;
     }
 
-    public String getDeck(String id){
+    public String getDeck(String id) {
         AggregateIterable<Document> deck = deckCollection.aggregate(Arrays.asList(
             Aggregates.match(new Document("_id", new ObjectId(id))),
             Aggregates.lookup("cards", "cards", "_id", "cards")
@@ -58,30 +58,45 @@ public class DeckController {
         return deck.first().toJson();
     }
 
-    public String getDecks(Request req, Response res){
+    public String getDecks(Request req, Response res) {
         res.type("application/json");
         return getDecks(req.queryMap().toMap());
     }
 
-    public String getDecks(Map<String, String[]> queryParams){
-        Document filtering = new Document();
-        if (queryParams.containsKey("name")){
-            String  filterName = queryParams.get("name")[0];
-            filtering = filtering.append("name", filterName);
+    public String getDecks(Map<String, String[]> queryParams) {
+
+        Document filterDoc = new Document();
+
+        if (queryParams.containsKey("word")) {
+            String targetWord = (queryParams.get("word")[0]);
+            filterDoc = filterDoc.append("word", targetWord);
         }
 
-        AggregateIterable<Document> decks = deckCollection.aggregate(Arrays.asList(
-            Aggregates.match(filtering),
-            Aggregates.project(Projections.fields(
-                Projections.include("name"),
-                Projections.computed("count", new Document("$size", "$cards"))
-            ))
-        ));
+        if (queryParams.containsKey("synonym")) {
+            String targetSynonym = (queryParams.get("synonym")[0]);
+            filterDoc = filterDoc.append("synonym", targetSynonym);
+        }
 
-        return JSON.serialize(decks);
+        if (queryParams.containsKey("antonym")) {
+            String targetAntonym = (queryParams.get("antonym")[0]);
+            filterDoc = filterDoc.append("antonym", targetAntonym);
+        }
+
+        if (queryParams.containsKey("general_sense")) {
+            String targetGeneralization = (queryParams.get("general_sense")[0]);
+            filterDoc = filterDoc.append("general_sense", targetGeneralization);
+        }
+
+        if (queryParams.containsKey("example_usage")) {
+            String targetExamples = (queryParams.get("example_usage")[0]);
+            filterDoc = filterDoc.append("example_usage", targetExamples);
+        }
+
+        //FindIterable comes from mongo, Document comes from Gson
+        FindIterable<Document> matchingTodos = deckCollection.find(filterDoc);
+
+        return JSON.serialize(matchingTodos);
     }
-
-
 
 
 }
