@@ -37,8 +37,8 @@ public class CardController {
             return "";
         }
 
-        if (user != null) {
-            return user;
+        if (id != null) {
+            return id;
         } else {
             res.status(404);
             res.body("The requested card with id " + id + " was not found");
