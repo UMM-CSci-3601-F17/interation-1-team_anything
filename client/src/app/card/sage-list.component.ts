@@ -23,19 +23,12 @@ export class SageListComponent implements OnInit {
     public sageExample : string;
 
 
-    //Inject the SageListService into this component.
-    //That's what happens in the following constructor.
-    //
-    //We can call upon the service for interacting
-    //with the server.
     constructor(public sageListService: SageListService) {
 
     }
 
     addNewSage(word: string, synonym: string, antonym : string, generalization : string, example : string) : void{
         if(word != null && synonym != null && antonym != null && generalization != null && example != null) {
-            //Here we clear all the fields, there's probably a better way
-            //of doing this could be with forms or something else
             this.sageWord = null;
             this.sageSynonym = null;
             this.sageAntonym = null;
