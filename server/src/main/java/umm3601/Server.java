@@ -7,6 +7,7 @@ import spark.Response;
 import spark.Route;
 import spark.utils.IOUtils;
 import umm3601.user.UserController;
+import umm3601.card.SageController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,14 +17,18 @@ import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Server {
     private static final String userDatabaseName = "dev";
+    private static final String sageDatabaseName = "dev";
+
     private static final int serverPort = 4567;
 
     public static void main(String[] args) throws IOException {
 
         MongoClient mongoClient = new MongoClient();
         MongoDatabase userDatabase = mongoClient.getDatabase(userDatabaseName);
+        MongoDatabase sageDatabase = mongoClient.getDatabase(sageDatabaseName);
 
         UserController userController = new UserController(userDatabase);
+        SageController sageController = new SageController(sageDatabase);
 
         //Configure Spark
         port(serverPort);
@@ -72,6 +77,10 @@ public class Server {
         get("api/users", userController::getUsers);
         get("api/users/:id", userController::getUser);
         post("api/users/new", userController::addNewUser);
+
+        get("api/sages", sageController::getSages);
+        get("api/sages/:id", sageController::getSage);
+        post("api/sages/new", sageController::addNewSage);
 
         // An example of throwing an unhandled exception so you can see how the
         // Java Spark debugger displays errors like this.
