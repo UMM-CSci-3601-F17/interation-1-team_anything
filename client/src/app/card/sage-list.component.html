@@ -33,15 +33,23 @@
             <mat-card-title id="sage-list-title">Added Cards</mat-card-title>
             <mat-divider></mat-divider><br><br><br>
             <mat-card-content>
-                <mat-list *ngIf="sages; else cardsError">
+                <mat-grid-list *ngIf="sages; else cardsError">
+                    <mat-card>
+                        <mat-card-title>Cards</mat-card-title>
+                        <mat-divider></mat-divider><br>
+
                         <mat-list-item id="sages-card" *ngFor="let sage of this.showSages()" class="list-group-item">
+
                             Word: {{ sage.word }}<br><br>
                             Synonym: {{ sage.synonym }}<br><br>
                             Antonym: {{ sage.antonym }}<br><br>
                             General Sense: {{ sage.generalization }}<br><br>
                             Example: {{ sage.example }}<br><br>
+                            <mat-divider></mat-divider><br><br><br>
                         </mat-list-item>
-                </mat-list>
+
+                    </mat-card>
+                </mat-grid-list>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
                 <ng-template #cardsError>
                     <p>
