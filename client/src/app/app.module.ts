@@ -10,8 +10,8 @@ import {HomeComponent} from './home/home.component';
 import {UserComponent} from "./users/user.component";
 import {UserListComponent} from './users/user-list.component';
 import {UserListService} from './users/user-list.service';
-import {createcardListComponent} from './card/sage-list.component';
-import {createcardsListService} from './card/sage-list.service';
+import {SageListComponent} from './card/sage-list.component';
+import {SageListService} from './card/sage-list.service';
 import {playComponent} from './play/play.component';
 import {playService} from "./play/play.service";
 import {Routing} from './app.routes';
@@ -33,14 +33,14 @@ import {SharedModule} from "./shared.module";
         HomeComponent,
         UserListComponent,
         UserComponent,
-        createcardListComponent,
+        SageListComponent,
         playComponent
     ],
     providers: [
         UserListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
-        createcardsListService,
+        SageListService,
         {provide: APP_BASE_HREF, useValue: '/'},
         {provide: MATERIAL_COMPATIBILITY_MODE, useValue: true},
         playService,

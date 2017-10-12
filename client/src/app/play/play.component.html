@@ -1,17 +1,23 @@
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title id="sage-list-title">Cards</mat-card-title>
+            <mat-card-title style="text-align:center;">Choose your Card!!</mat-card-title>
             <mat-divider></mat-divider>
-            <mat-card-content>
                 <mat-list *ngIf="sages; else cardsError">
-                    <mat-list-item id="sages" *ngFor="let sage of this.showSages()" class="list-group-item">
-                        Word: {{ sage.word }} ||
-                        Synonym: {{ sage.synonym }} ||
-                        Antonym: {{ sage.antonym }} ||
-                        General Sense: {{ sage.generalization }} ||
-                        Example: {{ sage.example }}
-                    </mat-list-item>
+                    <mat-card class="play" id="createCard">
+                        <mat-card-content *ngFor="let sage of this.showSages()">
+                                <mat-card>
+                                    <mat-card-title>Word: {{ sage.word }}</mat-card-title>
+                                        <mat-divider></mat-divider> <br><br>
+                                        <mat-card-actions class="card-actions" id="home_buttons">
+                                            <button mat-raised-button color="primary" #input type="button"
+                                                    (click)="this.showSages()">Get Hint</button>
+                                            <button mat-raised-button color="primary" #input type="button"
+                                                    (click)="this.showSages()">Next</button>
+                                        </mat-card-actions>
+                                </mat-card>
+                        </mat-card-content>
+                    </mat-card>
                 </mat-list>
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
                 <ng-template #cardsError>
@@ -23,7 +29,6 @@
                         Please wait a bit and try again or start the server.
                     </p>
                 </ng-template>
-            </mat-card-content>
         </mat-card>
     </div>
 </div>

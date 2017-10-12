@@ -14,14 +14,6 @@ export class playComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Play[];
     public allcards: Play[];
-
-    public sageWord : string;
-    public sageSynonym : string;
-    public sageAntonym : string;
-    public sageGensense : string;
-    public sageExample : string;
-
-
     //Inject the SageListService into this component.
     //That's what happens in the following constructor.
     //
@@ -35,6 +27,7 @@ export class playComponent implements OnInit {
         this.allcards = this.sages;
         return this.allcards;
     }
+
 
     refreshSages(): Observable<Play[]> {
         //Get Users returns an Observable, basically a "promise" that

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {createcardsListService} from "./sage-list.service";
+import {SageListService} from "./sage-list.service";
 import {Sage} from "./sage";
 import {Observable} from "rxjs";
 
@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
     providers: []
 })
 
-export class createcardListComponent implements OnInit {
+export class SageListComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Sage[];
     public allcards: Sage[];
@@ -28,7 +28,7 @@ export class createcardListComponent implements OnInit {
     //
     //We can call upon the service for interacting
     //with the server.
-    constructor(public sageListService: createcardsListService) {
+    constructor(public sageListService: SageListService) {
 
     }
 

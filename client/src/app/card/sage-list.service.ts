@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment";
 
 
 @Injectable()
-export class createcardsListService {
+export class SageListService {
     private sageUrl: string = environment.API_URL + "sages";
 
     constructor(private http: Http) {
