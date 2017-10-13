@@ -1,23 +1,39 @@
+
 <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Kumar+One+Outline" rel="stylesheet">
 <div layout-gt-sm="row">
     <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <mat-card>
-            <mat-card-title id="title">Play SAGE!!</mat-card-title>
+            <mat-card-title id="main-title">Play Sage!!</mat-card-title>
             <mat-divider></mat-divider>
+                <mat-list *ngIf="sages; else cardsError">
                     <mat-card class="play" id="createCard">
+
                         <mat-card-content *ngFor="let sage of this.showSages()">
                                 <mat-card>
-                                    <mat-card-title>Word: {{ sage.word }}</mat-card-title>
-                                        <mat-divider></mat-divider> <br><br>
-                                        <mat-card-actions class="card-actions" id="home_buttons">
-                                            <button id="hint" mat-raised-button color="primary" (click)="randomizeSages()">Hint</button>
-                                            <button id="next" mat-raised-button color="primary" (click)="randomizeSages()">Next Card</button>
-                                        </mat-card-actions>
+                                    <button mat-fab style="float:right;">
+                                        <!-- TODO : deck implementation -->
+                                        <a style="color:white;" href="javascript:alert('Added to your deck!!');"><mat-icon>favorite</mat-icon></a>
+                                    </button>
+                                    <mat-card-title>Word:
+                                        <mat-form-field>
+                                        <input matInput #input type="text" placeholder="    Guess word">
+                                    </mat-form-field></mat-card-title>
 
+                                    <mat-divider></mat-divider> <br><br>
+                                        <mat-card-actions class="card-actions" id="home_buttons">
+
+                                            <button mat-raised-button color="primary" #input type="button"
+                                                    (click)="this.showSages()">Get Hint</button>
+                                            <button mat-raised-button color="primary" #input type="button"
+                                                    (click)="this.showSages()">Next</button>
+                                            <button mat-raised-button color="primary" #input type="button" style="float:right;"
+                                                    (click)="this.sages=null;">Clear Deck</button>
+
+                                        </mat-card-actions>
                                 </mat-card>
                         </mat-card-content>
                     </mat-card>
-                <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+                </mat-list>
                 <ng-template #cardsError>
                     <p>
                         There was a problem loading the cards. Possibly the server is down or perhaps there are network
@@ -30,4 +46,3 @@
         </mat-card>
     </div>
 </div>
-

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {playService} from "./play.service";
 import {Play} from "./play";
 import {Observable} from "rxjs";
+
 @Component({
     selector: 'play-component',
     templateUrl: 'play.component.html',
@@ -13,11 +14,6 @@ export class playComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Play[];
     public allcards: Play[];
-
-    public score: number = 0;
-    public random: number[] = [1,2,3,4];
-    public numberNow:number = 0;
-
     private sageAddSuccess : Boolean = false;
 
     public sageWord : string;
@@ -39,6 +35,7 @@ export class playComponent implements OnInit {
         this.allcards = this.sages;
         return this.allcards;
     }
+
 
 
     refreshSages(): Observable<Play[]> {
@@ -63,13 +60,5 @@ export class playComponent implements OnInit {
         this.refreshSages();
     }
 
-    randomizeSages() {
-        if(this.random.length > 0) {
-            let randnum = Math.floor(Math.random() * this.random.length);
-            this.numberNow = this.random[randnum];
-            this.random.splice(randnum, 1);
-        } else {
-            console.log("All Hints Used");
-        }
-    }
+
 }

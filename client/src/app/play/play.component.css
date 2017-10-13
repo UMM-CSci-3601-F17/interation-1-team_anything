@@ -1,6 +1,32 @@
-#title {
+#main-1-title {
     text-align: center;
-    font-size: 100px;
+    font-size: 80px;
     font-family: 'Cabin Sketch', cursive;
     color: darkred;
+    float:left;
+}
+.edgePadding {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.example-button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#main-title {
+    text-align:center; font-family:
+    'Cabin Sketch', cursive;
+    font-size:80px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+#indCard {
+    text-align: center;
+    width: 30%;
+    float: left;
+
 }
