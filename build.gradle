@@ -7,3 +7,22 @@ task clearMongoDB(type: Exec) {
     executable "mongo"
     args = ["dev", "--eval", "printjson(db.dropDatabase())"]
 }
+
+
+task seedCardData(type: Exec) {
+    executable = "mongoimport"
+    args = ["-d", "dev", "-c", "cards", "--file", "cards.seed.json", "--jsonArray"]
+}
+
+task seedDeckData(type: Exec) {
+    executable = "mongoimport"
+    args = ["-d", "dev", "-c", "decks", "--file", "example-decks.json", "--jsonArray"]
+}
+
+
+task seedMongoDB {
+    group = "application"
+}
+seedMongoDB.dependsOn(clearMongoDB)
+seedMongoDB.dependsOn(seedCardData)
+//seedMongoDB.dependsOn(seedDeckData)
