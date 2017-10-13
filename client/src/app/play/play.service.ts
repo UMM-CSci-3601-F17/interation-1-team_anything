@@ -15,7 +15,7 @@ export class playService {
     constructor(private http: Http) {
     }
 
-    getSages(): Observable<Play[]> {
+    getCards(): Observable<Play[]> {
         let observable: Observable<any> = this.http.request(this.sageUrl);
         return observable.map(res => res.json());
     }

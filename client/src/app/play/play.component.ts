@@ -14,6 +14,9 @@ export class playComponent implements OnInit {
     //These are public so that tests can reference them (.spec.ts)
     public sages: Play[];
     public allcards: Play[];
+
+
+
     //Inject the SageListService into this component.
     //That's what happens in the following constructor.
     //
@@ -23,20 +26,21 @@ export class playComponent implements OnInit {
 
     }
 
-    showSages() : Play[] {
+    showCards() : Play[] {
         this.allcards = this.sages;
         return this.allcards;
     }
 
 
-    refreshSages(): Observable<Play[]> {
+
+    refreshCards(): Observable<Play[]> {
         //Get Users returns an Observable, basically a "promise" that
         //we will get the data from the server.
         //
         //Subscribe waits until the data is fully downloaded, then
         //performs an action on it (the first lambda)
 
-        let plays : Observable<Play[]> = this.sageListService.getSages();
+        let plays : Observable<Play[]> = this.sageListService.getCards();
         plays.subscribe(
             sages => {
                 this.sages = sages;
@@ -48,7 +52,7 @@ export class playComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.refreshSages();
+        this.refreshCards();
     }
 
 }

@@ -15,7 +15,7 @@ export class SageListService {
     constructor(private http: Http) {
     }
 
-    getSages(): Observable<Sage[]> {
+    getCards(): Observable<Sage[]> {
         let observable: Observable<any> = this.http.request(this.sageUrl);
         return observable.map(res => res.json());
     }
@@ -24,7 +24,7 @@ export class SageListService {
         return this.http.request(this.sageUrl + "/" + id).map(res => res.json());
     }
 
-    addNewSage(word : string, synonym : string, antonym : string, generalization : string, example : string): Observable<Boolean> {
+    addNewCard(word : string, synonym : string, antonym : string, generalization : string, example : string): Observable<Boolean> {
         const body = {word:word, synonym:synonym, antonym:antonym, generalization:generalization, example:example};
         console.log(body);
 

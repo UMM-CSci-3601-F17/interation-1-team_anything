@@ -22,7 +22,7 @@
                 </mat-form-field><br><br><br>
 
                 <button mat-raised-button color="primary" #input type="button"
-                        (click)="this.addNewSage(sageWord, sageSynonym, sageAntonym, sageGeneralization, sageExample)">Create</button>
+                        (click)="this.addNewCard(sageWord, sageSynonym, sageAntonym, sageGeneralization, sageExample)">Create</button>
             </mat-card-content><br>
         </mat-card>
     </div>
@@ -34,7 +34,7 @@
                 <mat-grid-list *ngIf="sages; else cardsError">
                     <mat-card>
 
-                        <mat-list-item *ngFor="let sage of this.showSages()" class="list-group-item">
+                        <mat-list-item *ngFor="let sage of this.showCards()" class="list-group-item">
                             <mat-card id="indCard">
                             <mat-card-title>{{ sage.word }}</mat-card-title>
                             <mat-divider></mat-divider> <br>

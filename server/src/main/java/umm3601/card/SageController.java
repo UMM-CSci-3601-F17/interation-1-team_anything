@@ -37,6 +37,11 @@ public class SageController {
     }
 
 
+
+
+
+
+
     /**
      * Get a JSON response with a list of all the users in the database.
      *
@@ -44,12 +49,12 @@ public class SageController {
      * @param res the HTTP response
      * @return one user in JSON formatted string and if it fails it will return text with a different HTTP status code
      */
-    public String getSage(Request req, Response res){
+    public String getCard(Request req, Response res){
         res.type("application/json");
         String id = req.params("id");
-        String sage;
+        String card;
         try {
-            sage = getSage(id);
+            card = getCard(id);
         } catch (IllegalArgumentException e) {
             // This is thrown if the ID doesn't have the appropriate
             // form for a Mongo Object ID.
@@ -59,8 +64,8 @@ public class SageController {
                 "See 'https://docs.mongodb.com/manual/reference/method/ObjectId/' for more info.");
             return "";
         }
-        if (sage != null) {
-            return sage;
+        if (card != null) {
+            return card;
         } else {
             res.status(404);
             res.body("The requested sage with id " + id + " was not found");
@@ -76,7 +81,7 @@ public class SageController {
      * @return the desired user as a JSON object if the user with that ID is found,
      * and `null` if no user with that ID is found
      */
-    public String getSage(String id) {
+    public String getCard(String id) {
         FindIterable<Document> jsonSages
             = sageCollection
             .find(eq("_id", new ObjectId(id)));
@@ -97,17 +102,17 @@ public class SageController {
      * @param res
      * @return an array of users in JSON formatted String
      */
-    public String getSages(Request req, Response res)
+    public String getCards(Request req, Response res)
     {
         res.type("application/json");
-        return getSages(req.queryMap().toMap());
+        return getCards(req.queryMap().toMap());
     }
 
     /**
      * @param queryParams
      * @return an array of Users in a JSON formatted string
      */
-    public String getSages(Map<String, String[]> queryParams) {
+    public String getCards(Map<String, String[]> queryParams) {
 
         Document filterDoc = new Document();
 
@@ -123,7 +128,7 @@ public class SageController {
      * @param res
      * @return
      */
-    public boolean addNewSage(Request req, Response res)
+    public boolean addNewCard(Request req, Response res)
     {
 
         res.type("application/json");
@@ -141,7 +146,7 @@ public class SageController {
                     String example = dbO.getString("example");
 
                     System.err.println("Adding new sage card [word=" + word + ", synonym=" + synonym + " antonym=" + antonym + " generalization=" + generalization + ", example=" + example + ']');
-                    return addNewSage(word, synonym, antonym, generalization, example);
+                    return addNewCard(word, synonym, antonym, generalization, example);
                 }
                 catch(NullPointerException e)
                 {
@@ -172,17 +177,17 @@ public class SageController {
      * @param example
      * @return
      */
-    public boolean addNewSage(String word, String synonym, String antonym, String generalization, String example) {
+    public boolean addNewCard(String word, String synonym, String antonym, String generalization, String example) {
 
-        Document newSage = new Document();
-        newSage.append("word", word);
-        newSage.append("synonym", synonym);
-        newSage.append("antonym", antonym);
-        newSage.append("generalization", generalization);
-        newSage.append("example", example);
+        Document newCard = new Document();
+        newCard.append("word", word);
+        newCard.append("synonym", synonym);
+        newCard.append("antonym", antonym);
+        newCard.append("generalization", generalization);
+        newCard.append("example", example);
 
         try {
-            sageCollection.insertOne(newSage);
+            sageCollection.insertOne(newCard);
         }
         catch(MongoException me)
         {

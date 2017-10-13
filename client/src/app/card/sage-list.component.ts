@@ -32,7 +32,7 @@ export class SageListComponent implements OnInit {
 
     }
 
-    addNewSage(word: string, synonym: string, antonym : string, generalization : string, example : string) : void{
+    addNewCard(word: string, synonym: string, antonym : string, generalization : string, example : string) : void{
         if(word != null && synonym != null && antonym != null && generalization != null && example != null) {
             //Here we clear all the fields, there's probably a better way
             //of doing this could be with forms or something else
@@ -42,23 +42,23 @@ export class SageListComponent implements OnInit {
             this.sageGeneralization = null;
             this.sageExample = null;
 
-            this.sageListService.addNewSage(word, synonym, antonym, generalization, example).subscribe(
+            this.sageListService.addNewCard(word, synonym, antonym, generalization, example).subscribe(
                 succeeded => {
                     this.sageAddSuccess = succeeded;
-                    this.refreshSages();
+                    this.refreshCards();
                 });
         } else {
             console.log("Failed to add card, missing params");
         }
     }
 
-    showSages() : Sage[] {
+    showCards() : Sage[] {
         this.allcards = this.sages;
         return this.allcards;
     }
 
-    refreshSages(): Observable<Sage[]> {
-        let sages : Observable<Sage[]> = this.sageListService.getSages();
+    refreshCards(): Observable<Sage[]> {
+        let sages : Observable<Sage[]> = this.sageListService.getCards();
         sages.subscribe(
             sages => {
                 this.sages = sages;
@@ -70,7 +70,7 @@ export class SageListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.refreshSages();
+        this.refreshCards();
     }
 
 }
