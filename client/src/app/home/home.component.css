@@ -1,0 +1,22 @@
+#title {
+    text-align: center;
+    font-size: 140px;
+    font-family: 'Kumar One Outline', cursive;
+    background-image: url("https://i.pinimg.com/originals/92/50/71/925071e184c5884a1e16ec5629d09e13.jpg");
+    color: #880e4f;
+}
+
+#description {
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Cabin Sketch', cursive;
+    color: #a41a47;
+    opacity: 0.7;
+}
+
+#home_buttons{
+    text-align: center;
+    color: red;
+    font-size: 50px;
+}
+

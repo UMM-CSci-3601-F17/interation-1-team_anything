@@ -1,0 +1,20 @@
+@import "theme";
+/* You can add global styles to this file, and also import other style files */
+.nav-active {
+    background-color: mat-color($mat-grey, 100) !important;
+    color: mat-color($accent) !important;
+    .dark-primary-color    { background: #C2185B; }
+    .default-primary-color { background: #E91E63; }
+    .light-primary-color   { background: #F8BBD0; }
+    .text-primary-color    { color: #FFFFFF; }
+    .accent-color          { background: #FF5252; }
+    .primary-text-color    { color: #212121; }
+    .secondary-text-color  { color: #757575; }
+    .divider-color         { border-color: #BDBDBD; }
+
+}
+
+.nav-active mat-icon {
+    color: mat-color($accent) !important;
+}
+

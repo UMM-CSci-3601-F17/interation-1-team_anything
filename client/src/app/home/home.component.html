@@ -1,3 +1,19 @@
-<h2>
-    <span class="badge badge-primary" id="home-greeting">{{ text }}</span>
-</h2>
+<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Kumar+One+Outline" rel="stylesheet">
+
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card>
+            <mat-card-title id="title">{{ this.text }}</mat-card-title>
+            <mat-card-content id="description">
+                <p>
+                    Welcome to I am SAGE, an educational vocabulary learning tool! <br>
+                    Please select an action below!
+                </p>
+            </mat-card-content>
+        </mat-card>
+            <mat-card-actions id="home_buttons">
+                <button mat-button class="text-upper">Play</button>
+                <button mat-button class="text-upper">Add a Card</button>
+            </mat-card-actions>
+    </div>
+</div>

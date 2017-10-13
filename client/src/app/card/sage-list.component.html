@@ -1,0 +1,64 @@
+<!-- this is an extremely simple adding mechanism that was added to make testing easier, not essential to the iteration -->
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card id="create-container">
+            <mat-card-title>Create Card</mat-card-title>
+            <mat-divider></mat-divider><br>
+            <mat-card-content >
+                <mat-form-field>
+                    <input matInput #input type="text" placeholder="Word" [(ngModel)]="sageWord">
+                </mat-form-field><br>
+                <mat-form-field>
+                    <input matInput #input type="text" placeholder="Synonym" [(ngModel)]="sageSynonym">
+                </mat-form-field><br>
+                <mat-form-field>
+                    <input matInput #input type="text" placeholder="Antonym" [(ngModel)]="sageAntonym">
+                </mat-form-field><br>
+                <mat-form-field>
+                    <input matInput #input type="text" placeholder="General Description" [(ngModel)]="sageGeneralization">
+                </mat-form-field><br>
+                <mat-form-field>
+                    <input matInput #input type="text" placeholder="Example" [(ngModel)]="sageExample">
+                </mat-form-field><br><br><br>
+
+                <button mat-raised-button color="primary" #input type="button"
+                        (click)="this.addNewSage(sageWord, sageSynonym, sageAntonym, sageGeneralization, sageExample)">Create</button>
+            </mat-card-content><br>
+        </mat-card>
+    </div>
+</div>
+<div layout-gt-sm="row">
+    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+        <mat-card id="create-addCardContainer">
+
+                <mat-grid-list *ngIf="sages; else cardsError">
+                    <mat-card>
+
+                        <mat-list-item *ngFor="let sage of this.showSages()" class="list-group-item">
+                            <mat-card id="indCard">
+                            <mat-card-title>{{ sage.word }}</mat-card-title>
+                            <mat-divider></mat-divider> <br>
+                             Synonym: {{ sage.synonym }}<br><br>
+                             Antonym: {{ sage.antonym }}<br><br>
+                             General: {{ sage.generalization }}<br><br>
+                             Example: {{ sage.example }}<br><br>
+
+                            </mat-card>
+                        </mat-list-item>
+
+                    </mat-card>
+                </mat-grid-list>
+                <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
+                <ng-template #cardsError>
+                    <p>
+                        There was a problem loading the cards. Possibly the server is down or perhaps there are network
+                        issues.
+                    </p>
+                    <p>
+                        Please wait a bit and try again or start the server.
+                    </p>
+                </ng-template>
+
+        </mat-card>
+    </div>
+</div>
