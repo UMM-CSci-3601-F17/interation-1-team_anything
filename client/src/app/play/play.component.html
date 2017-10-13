@@ -1,24 +1,34 @@
 <div layout-gt-sm="row">
-    <div flex-gt-sm="80" flex-offset-gt-sm="10">
+    <div flex-gt-sm="90" flex-offset-gt-sm="15">
         <mat-card>
             <mat-card-title style="text-align:center;">Choose your Card!!</mat-card-title>
-            <mat-divider></mat-divider>
                 <mat-list *ngIf="sages; else cardsError">
                     <mat-card class="play" id="createCard">
                         <mat-card-content *ngFor="let sage of this.showCards()">
 
-                                    <mat-card-title>Word: {{ sage.word }}</mat-card-title>
-                                        <mat-divider></mat-divider> <br><br>
-                                        <mat-card-actions class="card-actions" id="home_buttons">
-                                            <button mat-raised-button color="primary" #input type="button"
-                                                    (click)="this.showCards()">Get Hint</button>
-                                            <button mat-raised-button color="primary" #input type="button"
-                                                    (click)="this.showCards()">Next</button>
-                                        </mat-card-actions>
+                            <mat-list class="list-group-item">
+                                <mat-list-item>
+                                    Synonym: {{ sage.synonym }}
+                                </mat-list-item>
+                                <mat-list-item>
+                                    Antonym: {{ sage.antonym }}
+                                </mat-list-item>
+                                <mat-list-item>
+                                    General Sense: {{ sage.generalization }}<br>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    Example: {{ sage.example }}
+                                </mat-list-item>
 
+                                <div class="card-buttons">
+                                    <button id="Hint" >Hint</button>
+                                    <button id="Skip" >Skip</button>
+                                </div>
+                            </mat-list>
                         </mat-card-content>
                     </mat-card>
                 </mat-list>
+
                 <!-- Maybe this should be a pop-up instead of just a text message? Not sure. -->
                 <ng-template #cardsError>
                     <p>
