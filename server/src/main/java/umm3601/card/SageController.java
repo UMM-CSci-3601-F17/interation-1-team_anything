@@ -137,11 +137,11 @@ public class SageController {
                     String word = dbO.getString("word");
                     String synonym = dbO.getString("synonym");
                     String antonym = dbO.getString("antonym");
-                    String gensense = dbO.getString("gensense");
+                    String generalization = dbO.getString("generalization");
                     String example = dbO.getString("example");
 
-                    System.err.println("Adding new sage card [word=" + word + ", synonym=" + synonym + " antonym=" + antonym + " gensense=" + gensense + ", example=" + example + ']');
-                    return addNewSage(word, synonym, antonym, gensense, example);
+                    System.err.println("Adding new sage card [word=" + word + ", synonym=" + synonym + " antonym=" + antonym + " generalization=" + generalization + ", example=" + example + ']');
+                    return addNewSage(word, synonym, antonym, generalization, example);
                 }
                 catch(NullPointerException e)
                 {
@@ -168,17 +168,17 @@ public class SageController {
      * @param word
      * @param synonym
      * @param antonym
-     * @param gensense
+     * @param generalization
      * @param example
      * @return
      */
-    public boolean addNewSage(String word, String synonym, String antonym, String gensense, String example) {
+    public boolean addNewSage(String word, String synonym, String antonym, String generalization, String example) {
 
         Document newSage = new Document();
         newSage.append("word", word);
         newSage.append("synonym", synonym);
         newSage.append("antonym", antonym);
-        newSage.append("gensense", gensense);
+        newSage.append("generalization", generalization);
         newSage.append("example", example);
 
         try {
